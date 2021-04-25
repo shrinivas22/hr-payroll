@@ -1,0 +1,69 @@
+<div *ngIf="isDataAvailable">
+  <div class="container" *ngIf="noData">
+    <img src="../../../assets/square-payroll-review.original.jpg" alt="Snow" style="width:100%">
+    <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+    <h1 class="font-weight-light">Welcome to Simple HR Payroll </h1>
+    <p class="lead">To get started with go ahead and add employee details to get the Anual salary details!</p>
+    <p class="lead">Please find the add employee button below to continue or you can find it above!</p>
+    <!-- <div style="height: 700px"></div> -->
+    <div class="col-sm-4">
+      <button type="button" class="btn btn-info add-new" [routerLink]="['/add']"><i class="fa fa-plus"></i> Add New
+        Employee</button>
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  <div class="container" *ngIf="!noData">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-8">
+          <h2>Employee <b>Details</b></h2>
+        </div>
+        <!-- <div class="col-sm-4">
+          <button type="button" class="btn btn-info add-new" [routerLink]="['/add']"><i class="fa fa-plus"></i> Add New
+            Employee</button>
+        </div> -->
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="search-text">Search Employees</label>
+      <input type="text" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText"
+        placeholder="Enter text to search" autofocus>
+    </div>
+    <div class="row ">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Net Salary</th>
+            <th class="text-center">Actions to perform</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let employee of employees | searchFilter: searchText ; let i = index;">
+          <td><a [routerLink]="['/main',employee.id]">{{employee.firstname}} {{employee.lastname}}</a></td>
+          <td>{{employee.email}}</td>
+          <td>{{employee.payablesalary | currency}}</td>
+          <!-- <td class="text-center"><a class='btn btn-info btn-xs' [routerLink]="['/main',employee._id]"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+              <a class='btn btn-danger btn-xs' (click) = "deleteEmployee(employee._id,i) "><span class="glyphicon glyphicon-remove"></span>Delete</a>
+            </td> -->
+          <td class="text-center">
+            <a class="edit" title="Edit" data-toggle="tooltip" [routerLink]="['/main',employee.id]"><i
+                class="material-icons">&#xE254;</i></a>
+            <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteEmployee(employee.id,i)"><i
+                class="material-icons">&#xE872;</i></a>
+          </td>
+        </tr>
+      </table>
+      <button type="button" id="add-btn" class="btn btn-primary" [routerLink]="['/add']"><b>+</b> Add new
+        employee</button>
+    </div>
+  </div>
+  
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+    </div>
+  </nav>
+</div>
