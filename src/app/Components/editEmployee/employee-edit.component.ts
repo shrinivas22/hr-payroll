@@ -53,11 +53,7 @@ export class EmployeeEditComponent implements OnInit {
                         this.employee = data;
                         console.log('in getEmployee');
                         console.log(JSON.stringify(data));
-                        // console.log(URL.createObjectURL(new Blob([data.image], { type: 'image/png' })));
-                        // this.img_path = 'data:image/png;base64,' + this.employee.image;
-
-                        //this.img_path=this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(new Blob([data.image], { type: 'image/png' })));
-                    },
+                      },
                     (error) => console.log(error)
                 );
         });
@@ -75,7 +71,6 @@ export class EmployeeEditComponent implements OnInit {
         };
     }
     onUpload() {
-        // this.http is the injected HttpClient
         const uploadData = new FormData();
         uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
         console.log( this.selectedFile,uploadData);
@@ -88,7 +83,6 @@ export class EmployeeEditComponent implements OnInit {
                 (data: any) => {
                     console.log('inside delete');
                     //this.router.navigate(['/main'])
-
                 },
                 (error) => console.log(error)
             );

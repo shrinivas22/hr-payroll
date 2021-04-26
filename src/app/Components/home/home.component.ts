@@ -32,11 +32,7 @@ export class HomeComponent implements OnInit {
             this.noData = true;
             console.log(this.noData);
           }
-          console.log(this.noData)
-          console.log(this.isDataAvailable);
           this.isDataAvailable=true;
-          console.log(this.isDataAvailable)
-          console.log(this.employees.length);
         },
         (error) => console.log(error)
       );
