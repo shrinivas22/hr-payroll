@@ -15,6 +15,7 @@ export class EmployeeComponent implements OnInit {
   selectedValue: number = 0;
   //employee object
   employee: any = {};
+  validationPattern = /^\d{0,1}(\.\d{1,2})?$/;
   constructor(private _employeeService: EmployeeService, private router: Router, private _headerTitleService: headerTitleService) { }
 
   ngOnInit() {

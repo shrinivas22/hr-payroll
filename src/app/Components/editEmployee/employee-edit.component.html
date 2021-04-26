@@ -1,16 +1,16 @@
 <div class="container " id="inputData">
-  <form #postemployeeForm="ngForm">
-    <div class="row">
-      <div class="col-md-6">
+  <form ngNativeValidate (ngSubmit)="updateEmployee()" #postemployeeForm="ngForm">
+    <div>
+      <div>
 
-        
+
         <div class="form-group">
           <div class="col-xs-6">
             <label for="employee_name">
               <h5>Employee first Name</h5>
             </label>
             <input type="text" class="form-control" name="employee_fname" [(ngModel)]="employee.firstname"
-              id="employee_fname" placeholder="employee first name" title="enter the name of the employee.">
+              id="employee_fname" placeholder="employee first name" title="enter the name of the employee." required>
           </div>
         </div>
 
@@ -20,7 +20,7 @@
               <h5>Employee Last Name</h5>
             </label>
             <input type="text" class="form-control" name="employee_lname" [(ngModel)]="employee.lastname"
-              id="employee_lname" placeholder="employee last name" title="enter the name of the employee.">
+              id="employee_lname" placeholder="employee last name" title="enter the name of the employee." required>
           </div>
         </div>
         <div class="form-group">
@@ -29,7 +29,7 @@
               <h5>Employee Gender</h5>
             </label>
             <div style="margin-left:35px;">
-              <select [(ngModel)]="employee.gender" name="gender">
+              <select [(ngModel)]="employee.gender" name="gender" required>
                 <option [value]="'Male'">Male</option>
                 <option [value]="'Female'">Female</option>
                 <option [value]="'Others'">Others</option>
@@ -43,7 +43,7 @@
               <h5>Employee Bio</h5>
             </label>
             <textarea class="form-control" placeholder="Bio" style="height:250px" name="employee_description"
-              [(ngModel)]="employee.address"></textarea>
+              [(ngModel)]="employee.address" required></textarea>
           </div>
         </div>
 
@@ -53,7 +53,7 @@
               <h5>Employee SSN</h5>
             </label>
             <input type="text" class="form-control" name="employee_name" [(ngModel)]="employee.SSN" id="employee.SSN"
-              placeholder="employee SSN" title="enter the SSN of the employee.">
+              placeholder="employee SSN" title="enter the SSN of the employee." required>
           </div>
         </div>
 
@@ -67,7 +67,7 @@
               </div>
               <div class="col-6">
                 <input class="form-control" name="employee_dept" [(ngModel)]="employee.department"
-                  placeholder="Department" title="enter the Department">
+                  placeholder="Department" title="enter the Department" required>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@
               </div>
               <div class="col-6">
                 <input class="form-control" name="employee_designation" [(ngModel)]="employee.designation"
-                  placeholder="Designation" title="enter the Designation">
+                  placeholder="Designation" title="enter the Designation" required>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@
               </div>
               <div class="col-6">
                 <input type="number" class="form-control" name="employee_salary" [(ngModel)]="employee.grosspay"
-                  placeholder="Salary" title="enter the gross pay">
+                  placeholder="Salary" title="enter the gross pay" required>
               </div>
             </div>
           </div>
@@ -115,11 +115,15 @@
               </div>
               <div class="col-6">
                 <input type="number" class="form-control" name="employee_FedTax" [(ngModel)]="employee.federaltax"
-                  placeholder="Federal Tax" title="enter the Federal Tax">
+                  placeholder="Federal Tax" title="enter the Federal Tax" 
+                  step="any" min="0" max="10" [pattern]="validationPattern" #ufederal="ngModel" required>
               </div>
             </div>
           </div>
         </div>
+        <div *ngIf="ufederal.errors?.pattern" style="color: red;"> 
+          Federal Tax Deduction not valid must be between 0 and 10.
+       </div> 
 
         <div class="form-group">
           <div class="col-xs-6">
@@ -132,11 +136,17 @@
               <div class="col-6">
                 <input type="number" class="form-control" name="employee_socialsecuritytax"
                   [(ngModel)]="employee.socialsecuritytax" placeholder="Social Security Tax"
-                  title="enter the Social Security Tax">
+                  title="enter the Social Security Tax" 
+                  step="any" min="0" max="10" [pattern]="validationPattern" #usst="ngModel" required>
               </div>
             </div>
           </div>
         </div>
+
+        <div *ngIf="usst.errors?.pattern" style="color: red;"> 
+          Social Security Tax Deduction not valid must be between 0 and 10.
+       </div> 
+
         <div class="form-group">
           <div class="col-xs-6">
             <div class="row">
@@ -147,11 +157,17 @@
               </div>
               <div class="col-6">
                 <input type="number" class="form-control" name="employee_stateTax" [(ngModel)]="employee.statetax"
-                  placeholder="State Tax" title="enter the State Tax">
-              </div>
+                  placeholder="State Tax" title="enter the State Tax" 
+                  step="any" min="0" max="10" [pattern]="validationPattern" #ustate="ngModel" required>
+                              </div>
             </div>
           </div>
         </div>
+
+        <div *ngIf="ustate.errors?.pattern" style="color: red;"> 
+          State Tax Deduction not valid must be between 0 and 10.
+       </div> 
+
 
         <div class="form-group">
           <div class="col-xs-6">
@@ -163,11 +179,16 @@
               </div>
               <div class="col-6">
                 <input type="number" class="form-control" name="employee_health" [(ngModel)]="employee.healthinsurance"
-                  placeholder="Health insurance premium" title="enter the Health insurance premium">
+                  placeholder="Health insurance premium" title="enter the Health insurance premium" 
+                   step="any" min="0" max="10" [pattern]="validationPattern" #uhealth="ngModel" required>
               </div>
             </div>
           </div>
         </div>
+        <div *ngIf="uhealth.errors?.pattern" style="color: red;"> 
+          Health insurance premium Deduction not valid must be between 0 and 10.
+       </div> 
+
         <div class="form-group">
           <div class="col-xs-6">
             <div class="row">
@@ -178,7 +199,7 @@
               </div>
               <div class="col-6">
                 <input type="number" class="form-control" name="Bonus" [(ngModel)]="employee.bonus" placeholder="Bonus"
-                  title="enter the bonus">
+                  title="enter the bonus" required>
               </div>
             </div>
           </div>
@@ -193,7 +214,8 @@
               </div>
               <div class="col-6">
                 <input type="number" class="form-control" name="employee-reimbursements"
-                  [(ngModel)]="employee.reimbursements" placeholder="Reimbursements" title="enter the Reimbursements">
+                  [(ngModel)]="employee.reimbursements" placeholder="Reimbursements" title="enter the Reimbursements"
+                  required>
               </div>
             </div>
           </div>
@@ -218,48 +240,38 @@
           </div>
         </div>
 
-        <div class="col-md-6">
 
-          <div class="col-xs-6">
-            <div class="form-group text-center">
-              <label for="employee_email">
-                <h4>Email Id</h4>
-              </label>
-              <input type="text" [(ngModel)]="employee.email" class="form-control btn" placeholder="Email Id"
-                name="img-upload" id="employee_email">
-            </div>
-          </div>
 
-          <div class="col-xs-6">
-            <div class="form-group text-center">
-              <label for="phone">
-                <h4>Phone</h4>
-              </label>
-              <input type="text" [(ngModel)]="employee.phonenumber" class="form-control btn" placeholder="Phone no"
-                name="phone" id="phone">
-            </div>
-          </div>
-
+        <div class="col-xs-6">
           <div class="form-group text-center">
-            <div class="col-xs-6">
-            </div>
+            <label for="employee_email">
+              <h4>Email Id</h4>
+            </label>
+            <input type="text" [(ngModel)]="employee.email" class="form-control btn" placeholder="Email Id"
+              name="img-upload" id="employee_email" required>
           </div>
-
-          <div class="form-group text-center">
-            <div class="col-xs-6">
-            </div>
-          </div>
-
-          <br />
-
-          <div class="col-xs-12">
-            <br />
-            <button id="updateEvent" type="submit" class="btn btn-block btn-lg btn-success" (click)="updateEmployee()">
-              Update Employee
-            </button>
-          </div>
-
         </div>
+
+        <div class="col-xs-6">
+          <div class="form-group text-center">
+            <label for="phone">
+              <h4>Phone</h4>
+            </label>
+            <input type="text" [(ngModel)]="employee.phonenumber" class="form-control btn" placeholder="Phone no"
+              name="phone" id="phone" minlength="10" maxlength="10" required>
+          </div>
+        </div>
+
+
+        <br />
+
+        <div class="col-xs-12">
+          <br />
+          <button id="updateEvent" type="submit" class="btn btn-block btn-lg btn-success">
+            Update Employee
+          </button>
+        </div>
+
       </div>
     </div>
   </form>

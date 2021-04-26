@@ -19,6 +19,7 @@ export class EmployeeEditComponent implements OnInit {
     img_path: any = "../../../assets/image-employee.png";
     stars: number[] = [1, 2, 3, 4, 5];
     selectedValue: number = 0;
+    validationPattern = /^\d{0,1}(\.\d{1,2})?$/;
 
     constructor(private activatedRoute: ActivatedRoute, private _employeeService: EmployeeService,
         private router: Router, private _headerTitleService: headerTitleService, private sanitizer: DomSanitizer) {

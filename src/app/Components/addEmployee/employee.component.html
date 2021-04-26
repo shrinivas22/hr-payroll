@@ -1,5 +1,5 @@
 <div class="container " id="inputData">
-  <form ngNativeValidate (ngSubmit)="createEmployee()" name="model.myform" #f="ngForm">
+  <form ngNativeValidate (ngSubmit)="createEmployee()" name="myform" #f="ngForm">
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input [(ngModel)]="employee.firstname" type="text" required class="form-control" id="firstName"
@@ -31,7 +31,7 @@
     <div class="form-group">
       <label for="phonenumber">Phone Number</label>
       <input [(ngModel)]="employee.phonenumber" type="text" class="form-control" id="phonenumber" required
-        placeholder="10 digit number" name="phonenumber" />
+        placeholder="10 digit number" name="phonenumber" minlength="10" maxlength="10" />
     </div>
 
     <div class="form-group">
@@ -73,28 +73,37 @@
 
     <div class="form-group">
       <label for="statetax">State Tax Deduction</label>
-      <input [(ngModel)]="employee.statetax" type="number" class="form-control" id="statetax" placeholder="8.5" required
-        name="statetax" />
+      <input [(ngModel)]="employee.statetax" type="number" step="any" class="form-control" id="statetax" placeholder="8.5" required
+        name="statetax" [pattern]="validationPattern" #ustate="ngModel" />
     </div>
-
+    <div *ngIf="ustate.errors?.pattern" style="color: red;"> 
+      State Tax Deduction not valid must be between 0 and 10.
+   </div>
     <div class="form-group">
       <label for="federaltax">Federal Tax Deduction</label>
-      <input [(ngModel)]="employee.federaltax" type="number" class="form-control" id="federaltax" placeholder="4.5"
-        required name="federaltax" />
+      <input [(ngModel)]="employee.federaltax" type="number" step="any" class="form-control" id="federaltax" placeholder="4.5"
+        required name="federaltax" min="0" max="10" [pattern]="validationPattern" #ufederal="ngModel"/>
     </div>
-
+    <div *ngIf="ufederal.errors?.pattern" style="color: red;"> 
+      Federal Tax Deduction not valid must be between 0 and 10.
+   </div>
     <div class="form-group">
       <label for="healthinsurance">Health Insurance Deduction</label>
-      <input [(ngModel)]="employee.healthinsurance" type="number" class="form-control" id="healthinsurance"
-        placeholder="2.5" required name="healthinsurance" />
+      <input [(ngModel)]="employee.healthinsurance" type="number" step="any" class="form-control" id="healthinsurance"
+        placeholder="2.5" min="0" max="10" required name="healthinsurance" [pattern]="validationPattern" #uhealth="ngModel"/>
     </div>
+    <div *ngIf="uhealth.errors?.pattern" style="color: red;"> 
+      Health Insurance Deduction not valid must be between 0 and 10.
+   </div> 
 
     <div class="form-group">
       <label for="socialsecuritytax">Social Security Tax Deduction</label>
-      <input [(ngModel)]="employee.socialsecuritytax" type="number" class="form-control" id="socialsecuritytax"
-        placeholder="2.5" required name="socialsecuritytax" />
+      <input [(ngModel)]="employee.socialsecuritytax" step="any" type="number" class="form-control" id="socialsecuritytax"
+        placeholder="2.5" min="0" max="10" required name="socialsecuritytax" [pattern] ="validationPattern" #usst="ngModel" />
     </div>
-
+    <div *ngIf="usst.errors?.pattern" style="color: red;"> 
+      Social Security Tax not valid must be between 0 and 10.
+   </div> 
     <div class="form-group">
       <label for="reimbursements">Reimbursements</label>
       <input [(ngModel)]="employee.reimbursements" type="number" class="form-control" id="reimbursements"
