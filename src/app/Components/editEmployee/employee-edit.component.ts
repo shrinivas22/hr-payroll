@@ -52,12 +52,10 @@ export class EmployeeEditComponent implements OnInit {
                         this.employee = data;
                         console.log('in getEmployee');
                         console.log(JSON.stringify(data));
-                        console.log(URL.createObjectURL(new Blob([data.image], { type: 'image/png' })));
-                        this.img_path = 'data:image/png;base64,' + this.employee.image;
+                        // console.log(URL.createObjectURL(new Blob([data.image], { type: 'image/png' })));
+                        // this.img_path = 'data:image/png;base64,' + this.employee.image;
 
                         //this.img_path=this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(new Blob([data.image], { type: 'image/png' })));
-                        console.log(this.img_path);
-
                     },
                     (error) => console.log(error)
                 );
@@ -102,7 +100,7 @@ export class EmployeeEditComponent implements OnInit {
     updateEmployee() {
         console.log('I am inside update employee');
         console.log(this.employee);
-        console.log(this.employee.bonus, this.employee.bonus.reimbursements);
+        console.log(this.employee.bonus, this.employee.reimbursements);
         this._employeeService.updateEmployee(this._id, this.employee)
             .subscribe(
                 (data: any) => {

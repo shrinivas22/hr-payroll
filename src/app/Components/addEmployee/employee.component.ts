@@ -26,6 +26,19 @@ export class EmployeeComponent implements OnInit {
         this.employee.rating = star;
         console.log('Value of star', star, this.stars);
     }
+   myFunc() {
+      var patt = new RegExp("\d{3}[\-]\d{2}[\-]\d{4}");
+      
+      var res = patt.test(this.employee.SSN);
+      console.log(this.employee.SSN, res);
+      if(!res){
+        this.employee.SSN =this.employee.SSN
+           .match(/\d*/g).join('')
+           .match(/(\d{0,3})(\d{0,2})(\d{0,4})/).slice(1).join('-')
+           .replace(/-*$/g, '');
+      }
+      console.log(this.employee.SSN);
+   }
   createEmployee() {
     console.log(this.employee);
     this._employeeService.createEmployee(this.employee)
