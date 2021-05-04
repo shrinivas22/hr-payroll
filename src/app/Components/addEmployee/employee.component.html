@@ -43,7 +43,7 @@
       <label for="SSN">SSN</label>
 
       <input [(ngModel)]="employee.SSN" type="text" class="form-control" id="SSN" placeholder="9 digit SSN" required
-        name="SSN" (blur)="myFunc()" required pattern="\d{3}[\-]\d{2}[\-]\d{4}" />
+        name="SSN" (blur)="myPattern()" required pattern="\d{3}[\-]\d{2}[\-]\d{4}" />
     </div>
     <div class="form-group">
       <label for="designation">Employee Designation</label>

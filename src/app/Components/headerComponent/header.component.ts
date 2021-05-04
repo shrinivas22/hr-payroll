@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { headerTitleService } from '../../Services/title.service';
+import { HeaderTitleService } from '../../Services/title.service';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    // styleUrls: ['./home.component.css']
-  })
+})
 export class HeaderComponent implements OnInit {
     title = '';
-    routerPath='';
-    constructor(private headerTitleService: headerTitleService) { }
+    routerPath = '';
+    clicked: boolean = false;
+    /**
+    * Constructor used for injecting services and initializing class variables
+    * @param _headerTitleService
+    */
+    constructor(private _headerTitleService: HeaderTitleService) { }
 
     ngOnInit() {
-        this.headerTitleService.title.subscribe(updatedTitle => {
+        this._headerTitleService.title.subscribe(updatedTitle => {
             this.title = updatedTitle;
         });
-        this.headerTitleService.routerPath.subscribe(updatedPath => {
+        this._headerTitleService.routerPath.subscribe(updatedPath => {
             this.routerPath = updatedPath;
         });
     }

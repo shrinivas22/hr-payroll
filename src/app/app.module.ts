@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import {EmployeeService} from './Services/employee.service';
 import {HomeComponent} from './Components/home/home.component';
 import {EmployeeComponent} from './Components/addEmployee/employee.component';
-import {headerTitleService} from './Services/title.service';
+import {HeaderTitleService} from './Services/title.service';
 import { HeaderComponent } from './Components/headerComponent/header.component';
 import { FooterComponent } from './Components/footerComponent/footer.component';
 
@@ -30,7 +30,7 @@ import { FooterComponent } from './Components/footerComponent/footer.component';
     HttpClientModule,
     Routing
   ],
-  providers: [EmployeeService,headerTitleService],
+  providers: [EmployeeService,HeaderTitleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
