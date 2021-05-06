@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 import { HeaderTitleService } from '../../Services/title.service';
 import { IEmployee } from 'src/app/Interfaces/IEmployee';
+import { TokenStorageService } from '../../Services/token-storage.service';
+
 
 @Component({
   selector: 'app-home',
@@ -17,6 +19,7 @@ export class HomeComponent implements OnInit {
   isDataAvailable: boolean = true;
   _id: number = 0;
   searchText: string = "";
+  currentUser: any;
 
   /**
    * Constructor used for injecting services and initializing class variables
@@ -26,11 +29,13 @@ export class HomeComponent implements OnInit {
    */
   constructor(private _employeeService: EmployeeService,
     private router: Router,
+    private token: TokenStorageService,
     private _headerTitleService: HeaderTitleService) {
   }
 
 
   ngOnInit() {
+    this.currentUser = this.token.getUser();
     this._employeeService.getAllEmployees()
       .subscribe(
         (data) => {

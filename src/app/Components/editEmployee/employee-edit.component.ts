@@ -2,9 +2,7 @@ import { Component, OnInit, Sanitizer } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../Services/employee.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { HeaderTitleService } from '../../Services/title.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import { IEmployee } from 'src/app/Interfaces/IEmployee';
 
 @Component({
@@ -35,8 +33,6 @@ export class EmployeeEditComponent implements OnInit {
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
             this._id = params['employeeId'];
-            console.log(this._id);
-            console.log('Above is the id');
             this._employeeService.getEmployeeById(this._id)
                 .subscribe(
                     (data) => {
@@ -60,7 +56,6 @@ export class EmployeeEditComponent implements OnInit {
     countStar(star: number) {
         this.selectedValue = star;
         this.employee.rating = star;
-        console.log('Value of star', star, this.stars);
     }
     /**
      * This function updates the employee details of the current employee using the 

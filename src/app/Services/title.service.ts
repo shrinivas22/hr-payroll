@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HeaderTitleService {
   // setting the initial condiiton as required by BehaviorSubject.
-  title = new BehaviorSubject('Initial Title');
+  title = new BehaviorSubject('Home');
   routerPath = new BehaviorSubject('');
 
   /**

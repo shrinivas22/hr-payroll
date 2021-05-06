@@ -13,6 +13,9 @@ import {EmployeeComponent} from './Components/addEmployee/employee.component';
 import {HeaderTitleService} from './Services/title.service';
 import { HeaderComponent } from './Components/headerComponent/header.component';
 import { FooterComponent } from './Components/footerComponent/footer.component';
+import { LoginComponent } from './Components/login/login.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { authInterceptorProviders } from './Services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { FooterComponent } from './Components/footerComponent/footer.component';
     EmployeeEditComponent,
     FilterPipe,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,7 @@ import { FooterComponent } from './Components/footerComponent/footer.component';
     HttpClientModule,
     Routing
   ],
-  providers: [EmployeeService,HeaderTitleService],
+  providers: [EmployeeService,HeaderTitleService,authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,5 @@
 import { EmployeeService } from '../../Services/employee.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { IEmployee } from "../../Interfaces/IEmployee";
 import { HeaderTitleService } from '../../Services/title.service';
 import { Component, OnInit } from '@angular/core';
@@ -47,7 +46,7 @@ export class EmployeeComponent implements OnInit {
     console.log('Value of star', star, this.stars);
   }
   /**
-   * This function is used to format the SSN like NNN-NN-NNNN
+   * This function is used to format the SSN like NNN-NN-NNNN.
    */
   myPattern() {
     var pattern = new RegExp("\d{3}[\-]\d{2}[\-]\d{4}");
