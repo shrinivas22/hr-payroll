@@ -42,8 +42,6 @@ export class EmployeeComponent implements OnInit {
     this.selectedValue = star;
     if (this.employee !== undefined)
       this.employee.rating = star;
-      
-    console.log('Value of star', star, this.stars);
   }
   /**
    * This function is used to format the SSN like NNN-NN-NNNN.
@@ -52,7 +50,6 @@ export class EmployeeComponent implements OnInit {
     var pattern = new RegExp("\d{3}[\-]\d{2}[\-]\d{4}");
     if (this.employee != null && this.employee.SSN != null) { 
     var res = pattern.test(this.employee.SSN);
-    console.log(this.employee.SSN, res);
     if (!res) {
       this.employee.SSN = this.employee?.SSN?.match(/\d*/g).join('')
         .match(/(\d{0,3})(\d{0,2})(\d{0,4})/).slice(1).join('-')
